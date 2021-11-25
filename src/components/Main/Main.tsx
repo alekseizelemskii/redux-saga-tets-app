@@ -4,11 +4,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Input } from '@mui/material';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import { Container, FormControl, Box } from '@mui/material';
 import { Items } from '../../redux/reducers/itemsReducer';
 import { useQueryParam, StringParam } from 'use-query-params';
 import { RootState } from "../../redux/reducers";
@@ -67,45 +66,48 @@ export const Main: React.FC = () => {
 
     return (
         <>
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Container>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
 
-                <Select
-                    value={formik.values.category}
-                    onChange={(e) => formik.setFieldValue('category', e.target.value)}>
-                    {category?.map(cat => <MenuItem key={cat} value={cat}>{cat}</MenuItem>)}
-                </Select>
-                <Input
-                    type='text'
-                    color='primary'
-                    placeholder='search..'
-                    value={formik.values.searchValue}
-                    onChange={(event) => formik.setFieldValue('searchValue', event.target.value)}
-                />
-                <Button
+                    <Select
+                        value={formik.values.category}
+                        onChange={(e) => formik.setFieldValue('category', e.target.value)}>
+                        {category?.map(cat => <MenuItem key={cat} value={cat}>{cat}</MenuItem>)}
+                    </Select>
+                    <Input
+                        type='text'
+                        color='primary'
+                        placeholder='search..'
+                        value={formik.values.searchValue}
+                        onChange={(event) => formik.setFieldValue('searchValue', event.target.value)}
+                    />
+                    <Button
 
-                    size='small' variant="contained"
-                    type='submit' onClick={() => formik.handleSubmit()}>
-                    Search
-                </Button>
-            </FormControl>
-
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                flexWrap: "wrap",
-                p: 1,
-                m: 1,
-            }} >
-                {
-                    (loading) ? <Spinner /> : <>
-                        {
-                            filteredData.map(item => <Item key={item.name} item={item} />)
-                        }
-                    </>
-                }
-            </Box>
+                        size='small' variant="contained"
+                        type='submit' onClick={() => formik.handleSubmit()}>
+                        Search
+                    </Button>
+                </FormControl>
+            </Container>
+            <Container>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    flexWrap: "wrap",
+                    p: 1,
+                    m: 1,
+                }} >
+                    {
+                        (loading) ? <Spinner /> : <>
+                            {
+                                filteredData.map(item => <Item key={item.name} item={item} />)
+                            }
+                        </>
+                    }
+                </Box>
+            </Container>
         </>
 
     )

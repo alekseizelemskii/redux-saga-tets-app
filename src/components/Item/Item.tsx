@@ -18,7 +18,7 @@ const Item: React.FC<IProps> = ({ item }) => {
 
     return (
 
-        <Box>
+        
         <Card sx={{ maxWidth: 300, minHeight: 300 }}>
             <CardMedia
                 component="img"
@@ -40,7 +40,7 @@ const Item: React.FC<IProps> = ({ item }) => {
 
             </CardActions>
         </Card>
-        </Box>
+        
 
     );
 };
